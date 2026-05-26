@@ -1629,9 +1629,9 @@ body.light-mode .theme-toggle .theme-moon{
   }
 }
 
-@media (max-width:400px){
+@media (max-width:480px){
   .header{
-    grid-template-columns:minmax(4.7rem,1fr) max-content;
+    grid-template-columns:minmax(6.8rem,1fr) max-content;
     column-gap:.75rem;
     padding-left:clamp(.95rem,5vw,1.25rem);
     padding-right:clamp(.95rem,5vw,1.25rem);
