@@ -42,7 +42,6 @@ const filterState = {
   locations: new Set(),
   durations: new Set(),
   seasons: new Set(),
-  difficulties: new Set(),
   types: new Set(),
   experiences: new Set()
 };
@@ -51,7 +50,6 @@ const filterOptions = {
   locations: ["Uttarakhand", "Himachal Pradesh", "Kashmir", "Nepal", "Ladakh"],
   durations: ["1-3 Days", "4-6 Days", "7-10 Days", "10+ Days"],
   seasons: ["Summer", "Monsoon", "Autumn", "Winter", "Spring"],
-  difficulties: ["Easy", "Moderate", "Difficult"],
   types: ["Latest", "Discount", "Popular", "Luxury", "Family Friendly"],
   experiences: ["Trekking", "Pilgrimage/Yatra", "Camping", "Adventure", "Luxury Retreat"]
 };
@@ -168,7 +166,6 @@ function packageCard(trek, compact = false) {
       <img class="trek-image" src="${trek.image}" alt="${escapeHtml(trek.name)}" />
         <div class="package-badges">
           ${trek.badges.slice(0, compact ? 1 : 3).map((badge) => `<span>${escapeHtml(badge)}</span>`).join("")}
-          <span class="difficulty-badge ${trek.normalizedDifficulty.toLowerCase()}">${escapeHtml(trek.normalizedDifficulty)}</span>
         </div>
       </div>
       <div class="trek-info">
@@ -243,7 +240,6 @@ function filterPackages() {
     if (!selectedMatches(filterState.locations, (value) => trek.location === value)) return false;
     if (!selectedMatches(filterState.durations, (value) => matchesDuration(trek, value))) return false;
     if (!selectedMatches(filterState.seasons, (value) => trek.seasons.includes(value))) return false;
-    if (!selectedMatches(filterState.difficulties, (value) => trek.normalizedDifficulty === value)) return false;
     if (!selectedMatches(filterState.types, (value) => trek.types.includes(value))) return false;
     if (!selectedMatches(filterState.experiences, (value) => trek.experiences.includes(value))) return false;
     return true;
@@ -251,7 +247,7 @@ function filterPackages() {
 }
 
 function activeFilterTotal() {
-  const checkboxTotal = ["locations", "durations", "seasons", "difficulties", "types", "experiences"]
+  const checkboxTotal = ["locations", "durations", "seasons", "types", "experiences"]
     .reduce((total, group) => total + filterState[group].size, 0);
   const searchTotal = filterState.search.trim() ? 1 : 0;
   const priceTotal = filterState.maxPrice < 20000 ? 1 : 0;
@@ -310,7 +306,7 @@ function setupPackageFilters() {
   document.querySelector("#clearFilters")?.addEventListener("click", () => {
     filterState.search = "";
     filterState.maxPrice = 20000;
-    ["locations", "durations", "seasons", "difficulties", "types", "experiences"].forEach((group) => filterState[group].clear());
+    ["locations", "durations", "seasons", "types", "experiences"].forEach((group) => filterState[group].clear());
     if (packageSearch) packageSearch.value = "";
     if (priceRange) priceRange.value = "20000";
     document.querySelectorAll("[data-filter]").forEach((input) => {
@@ -379,7 +375,6 @@ function renderPackageDetail() {
         <div class="detail-price">${trek.cost === "Contact Us" ? "Contact Us" : escapeHtml(trek.cost)}</div>
         <dl>
           <div><dt>Duration</dt><dd>${escapeHtml(trek.duration)}</dd></div>
-          <div><dt>Difficulty</dt><dd>${escapeHtml(trek.normalizedDifficulty)}</dd></div>
           <div><dt>Season</dt><dd>${escapeHtml(trek.seasons.join(", "))}</dd></div>
           <div><dt>Rating</dt><dd>${trek.rating.toFixed(1)} / 5</dd></div>
         </dl>
@@ -452,7 +447,7 @@ function openTrekModal(trek) {
                 <span class="modal-stars">${starText(averageRating)}</span>
                 <span>${averageRating} (${reviews.length} reviews)</span>
               </div>
-              <p class="modal-meta-line">${escapeHtml(trek.location)} / ${escapeHtml(trek.duration)} / ${escapeHtml(trek.difficulty)}${trek.altitude ? ` / ${escapeHtml(trek.altitude)}` : ""}</p>
+              <p class="modal-meta-line">${escapeHtml(trek.location)} / ${escapeHtml(trek.duration)}${trek.altitude ? ` / ${escapeHtml(trek.altitude)}` : ""}</p>
             </div>
             <div class="modal-pricing-info">
               <p>Pricing</p>
@@ -543,7 +538,7 @@ function openTrekModal(trek) {
               <p>Cancellations made 30 days before departure qualify for a 50% refund. 15-29 days before gets a 25% refund. No refunds for cancellations made less than 15 days prior. Full details in our Terms of Service.</p>
             </div>
             <a class="cta-button" target="_blank" rel="noopener noreferrer" href="${whatsappLink(`Hi! I'm interested in the ${trek.name} (${trek.duration}) package for ${displayCost(trek.cost)}. Please share more details.`)}">
-              <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35M12.05 21.79h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.88 9.88M20.46 3.49A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.31-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.34 11.89-11.89 0-3.18-1.24-6.16-3.49-8.42"/></svg>
+              <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" fill="none"><path d="M12.006 2.004c-5.522 0-10.003 4.48-10.003 10.003 0 1.76.458 3.483 1.33 5.004L2 22.004l5.138-1.348a9.96 9.96 0 0 0 4.868 1.26h.004c5.522 0 10.003-4.481 10.003-10.004 0-5.521-4.481-10.003-10.003-10.003z" fill="#25D366"/><path d="M16.47 13.918c-.244-.122-1.448-.716-1.67-.798-.223-.082-.385-.123-.548.123-.162.245-.63.797-.771.961-.142.163-.284.184-.528.062a6.084 6.084 0 0 1-1.789-1.103 6.7 6.7 0 0 1-1.24-1.543c-.143-.245-.015-.378.107-.5.11-.11.244-.286.366-.429.122-.143.162-.245.244-.408.081-.164.04-.307-.02-.429-.062-.123-.549-1.325-.752-1.815-.198-.478-.399-.413-.548-.42-.142-.008-.305-.01-.468-.01a.896.896 0 0 0-.65.306c-.223.245-.853.837-.853 2.04 0 1.204.873 2.368.995 2.53.122.164 1.727 2.634 4.183 3.693 1.954.842 2.316.715 2.723.673.407-.04 1.32-.538 1.503-1.058.183-.52.183-.967.122-1.06-.06-.091-.223-.142-.468-.264z" fill="#FFF"/></svg>
               Inquire via WhatsApp
             </a>
           </section>
@@ -597,7 +592,7 @@ function openTextModal(type) {
       <h2>Contact Us</h2>
       <p>We're here to help you plan your next Himalayan adventure. Reach out to us via WhatsApp for the fastest response!</p>
       <a class="cta-button contact-cta" target="_blank" rel="noopener noreferrer" href="${whatsappLink("Hi SHIVOHHAM TRAILS! I'd like to get more information.")}">
-        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35M12.05 21.79h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.88 9.88M20.46 3.49A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.31-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.34 11.89-11.89 0-3.18-1.24-6.16-3.49-8.42"/></svg>
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" fill="none"><path d="M12.006 2.004c-5.522 0-10.003 4.48-10.003 10.003 0 1.76.458 3.483 1.33 5.004L2 22.004l5.138-1.348a9.96 9.96 0 0 0 4.868 1.26h.004c5.522 0 10.003-4.481 10.003-10.004 0-5.521-4.481-10.003-10.003-10.003z" fill="#25D366"/><path d="M16.47 13.918c-.244-.122-1.448-.716-1.67-.798-.223-.082-.385-.123-.548.123-.162.245-.63.797-.771.961-.142.163-.284.184-.528.062a6.084 6.084 0 0 1-1.789-1.103 6.7 6.7 0 0 1-1.24-1.543c-.143-.245-.015-.378.107-.5.11-.11.244-.286.366-.429.122-.143.162-.245.244-.408.081-.164.04-.307-.02-.429-.062-.123-.549-1.325-.752-1.815-.198-.478-.399-.413-.548-.42-.142-.008-.305-.01-.468-.01a.896.896 0 0 0-.65.306c-.223.245-.853.837-.853 2.04 0 1.204.873 2.368.995 2.53.122.164 1.727 2.634 4.183 3.693 1.954.842 2.316.715 2.723.673.407-.04 1.32-.538 1.503-1.058.183-.52.183-.967.122-1.06-.06-.091-.223-.142-.468-.264z" fill="#FFF"/></svg>
         Chat with Us
       </a>
       <div class="contact-details">
@@ -610,7 +605,7 @@ function openTextModal(type) {
 
   modalRoot.innerHTML = `
     <div class="modal-overlay" data-close-modal>
-      <article class="modal-content text-modal ${type === "contact" ? "contact-modal" : ""}" role="dialog" aria-modal="true">
+      <article class="modal-content text-modal ${type}-modal" role="dialog" aria-modal="true">
         <button class="close-btn" type="button" data-close-modal aria-label="Close modal">x</button>
         ${content[type]}
       </article>
