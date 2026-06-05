@@ -13,6 +13,7 @@ window.TREK_PACKAGES = [
     },
     note: "Optionals: Helicopter Rs. 8,500, Khacchar Rs. 2,000, Hot water Rs. 50/bucket.",
     image: "assets/packages/kedarnath_temple_trek.webp",
+    category: "yatra",
     description: "A spiritual journey to one of the 12 Jyotirlingas, situated at 3,583m amidst the Kedar range.",
     itinerary: [
       ["Departure from Delhi", "Overnight travel/drive from Delhi to the base camp."],
@@ -36,6 +37,7 @@ window.TREK_PACKAGES = [
     },
     note: "Additional Cost (Optional): Khacchar - Rs. 3000 approx.",
     image: "assets/packages/badrinath_temple_view.webp",
+    category: "yatra",
     description: "Brief itinerary covering two of the most sacred Dhams in the Himalayas.",
     itinerary: [
       ["Haridwar to Sonprayag", "Pickup from Haridwar, route covers Devprayag and Srinagar."],
@@ -54,6 +56,7 @@ window.TREK_PACKAGES = [
     altitude: "4,166 m",
     cost: "Rs. 16,999",
     image: "assets/packages/winter_spiti.webp",
+    category: "road",
     description: "An adventurous winter expedition to the remote, snow-covered Spiti Valley.",
     itinerary: [
       ["Shimla to Chitkul/Sangla", "Reach Shimla in the morning to start the Spiti journey."],
@@ -72,6 +75,7 @@ window.TREK_PACKAGES = [
     altitude: "12,073 ft",
     cost: "Rs. 5,500",
     image: "assets/packages/chopta_chandrashila_trek.webp",
+    category: "snow",
     description: "Trek to the highest Shiva temple and witness a 360-degree Himalayan panorama from the summit.",
     itinerary: [
       ["Departure from Delhi", "Overnight travel/drive from Delhi to the base camp."],
@@ -89,6 +93,7 @@ window.TREK_PACKAGES = [
     altitude: "6,726 ft",
     cost: "Rs. 8,500",
     image: "assets/packages/manali_tour.webp",
+    category: "road",
     description: "A perfect getaway to the beautiful valleys and snow-capped peaks of Manali.",
     itinerary: [
       ["Arrival in Manali", "Check-in and local sightseeing."],
@@ -106,6 +111,7 @@ window.TREK_PACKAGES = [
     altitude: "8,790 ft",
     cost: "Rs. 6,500",
     image: "assets/packages/chopta_chandrashila_trek_2.webp",
+    category: "meadow",
     description: "A peaceful retreat in the dense forests and meadows of Chopta.",
     itinerary: [
       ["Arrival in Chopta", "Relax at the campsite in the meadows."],
@@ -122,6 +128,7 @@ window.TREK_PACKAGES = [
     altitude: "5,250 ft",
     cost: "Rs. 7,200",
     image: "assets/packages/jibhi_retreat.webp",
+    category: "road",
     description: "Escape to the unexplored, lush green valley of Jibhi in the Tirthan Valley region.",
     itinerary: [
       ["Arrival in Jibhi", "Check-in to a cozy riverside homestay."],
@@ -138,6 +145,7 @@ window.TREK_PACKAGES = [
     altitude: "9,711 ft",
     cost: "Rs. 9,000",
     image: "assets/packages/kasol_kheerganga.webp",
+    category: "meadow",
     description: "Trek through the Parvati Valley and relax in the natural hot springs of Kheerganga.",
     itinerary: [
       ["Arrival in Kasol", "Explore cafes and the vibrant culture."],
@@ -155,6 +163,7 @@ window.TREK_PACKAGES = [
     altitude: "1,962 ft",
     cost: "Rs. 12,000",
     image: "assets/packages/udaipur_getaway.webp",
+    category: "road",
     description: "Experience the royal heritage, lakes, and palaces of the City of Lakes.",
     itinerary: [
       ["Arrival in Udaipur", "Lake Pichola boat ride and Jag Mandir visit."],
@@ -171,6 +180,7 @@ window.TREK_PACKAGES = [
     altitude: "Various",
     cost: "Rs. 19,000",
     image: "assets/packages/char_dham_yatra.webp",
+    category: "yatra",
     description: "The ultimate spiritual odyssey covering Yamunotri, Gangotri, Kedarnath, and Badrinath.",
     itinerary: [
       ["Haridwar to Jankichati", "Drive to the base of Yamunotri."],
@@ -189,6 +199,7 @@ window.TREK_PACKAGES = [
     altitude: "7,000 ft",
     cost: "Contact Us",
     image: "assets/packages/dayara_bugyal.webp",
+    category: "meadow",
     description: "Trek to one of the most beautiful high-altitude meadows in India.",
     itinerary: [
       ["Departure", "Assemble for an overnight journey to Haridwar and Rishikesh."],
@@ -206,6 +217,7 @@ window.TREK_PACKAGES = [
     altitude: "14,000 ft",
     cost: "Rs. 6,999",
     image: "assets/packages/kuari_pass.webp",
+    category: "snow",
     description: "The Lord Curzon trail offering unparalleled views of Mt. Nanda Devi.",
     itinerary: [
       ["Rishikesh to Joshimath", "Leave Tapovan for a 10-hour drive."],
@@ -224,6 +236,7 @@ window.TREK_PACKAGES = [
     altitude: "7,874 ft",
     cost: "Contact Us",
     image: "assets/packages/bir_billing.webp",
+    category: "road",
     description: "Experience Tibetan culture and the paragliding capital of India.",
     itinerary: [
       ["Departure", "Overnight journey to Mcleodganj from Delhi."],
@@ -241,6 +254,7 @@ window.TREK_PACKAGES = [
     altitude: "9,350 ft",
     cost: "Rs. 5,500",
     image: "assets/packages/triund_trek.webp",
+    category: "meadow",
     description: "A classic weekend trek offering stunning views of the Dhauladhar range.",
     itinerary: [
       ["Departure", "Departure from Delhi or Chandigarh."],
@@ -258,6 +272,7 @@ window.TREK_PACKAGES = [
     altitude: "12,500 ft",
     cost: "Contact Us",
     image: "assets/packages/kedarkantha_trek.webp",
+    category: "snow",
     description: "One of the most popular winter treks in India, known for its beautiful summit climb.",
     itinerary: [
       ["Dehradun to Sankri", "Drive from Dehradun to Sankri and acclimatise."],
@@ -268,4 +283,3 @@ window.TREK_PACKAGES = [
     ]
   }
 ];
-

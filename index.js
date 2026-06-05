@@ -36,6 +36,8 @@ const emptyResults = document.querySelector("#emptyResults");
 const foundersGrid = document.querySelector("#foundersGrid");
 const modalRoot = document.querySelector("#modalRoot");
 const body = document.body;
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
 const filterState = {
   search: "",
   maxPrice: 20000,
@@ -53,6 +55,9 @@ const filterOptions = {
   types: ["Latest", "Discount", "Popular", "Luxury", "Family Friendly"],
   experiences: ["Trekking", "Pilgrimage/Yatra", "Camping", "Adventure", "Luxury Retreat"]
 };
+
+const urlParams = new URLSearchParams(window.location.search);
+let selectedCategory = urlParams.get("category");
 
 function getNumericCost(trek) {
   const value = Number(trek.cost.replace(/\D/g, ""));
@@ -141,7 +146,7 @@ const defaultReviews = [
 ];
 
 function displayCost(cost) {
-  return cost;
+  return cost && String(cost).trim() !== "" && String(cost).toLowerCase() !== "contact us" ? String(cost) : "Contact for Price";
 }
 
 function starText(rating) {
@@ -177,7 +182,7 @@ function packageCard(trek, compact = false) {
         <div class="package-rating"><span>${starText(trek.rating)}</span><strong>${trek.rating.toFixed(1)}</strong></div>
         <p class="trek-description">${escapeHtml(trek.description)}</p>
         <div class="trek-card-footer">
-          <div class="trek-price">${trek.cost === "Contact Us" ? "Contact Us" : `From ${escapeHtml(trek.cost)}`}</div>
+          <div class="trek-price">${trek.cost && String(trek.cost).trim() !== "" && String(trek.cost).toLowerCase() !== "contact us" ? `From ${escapeHtml(trek.cost)}` : "Contact for Price"}</div>
           <span class="trek-details">View Details</span>
         </div>
       </div>
@@ -236,7 +241,10 @@ function filterPackages() {
   return enrichedTreks.filter((trek) => {
     const searchable = `${trek.name} ${trek.location} ${trek.description} ${trek.duration} ${trek.difficulty} ${trek.types.join(" ")} ${trek.experiences.join(" ")}`.toLowerCase();
     if (query && !searchable.includes(query)) return false;
-    if (trek.price !== null && trek.price > filterState.maxPrice) return false;
+    if (selectedCategory && trek.category !== selectedCategory) return false;
+    if (filterState.maxPrice < 20000) {
+      if (trek.price === null || trek.price > filterState.maxPrice) return false;
+    }
     if (!selectedMatches(filterState.locations, (value) => trek.location === value)) return false;
     if (!selectedMatches(filterState.durations, (value) => matchesDuration(trek, value))) return false;
     if (!selectedMatches(filterState.seasons, (value) => trek.seasons.includes(value))) return false;
@@ -288,6 +296,19 @@ function setupPackageFilters() {
   priceRange?.addEventListener("input", (event) => {
     filterState.maxPrice = Number(event.target.value);
     updatePriceLabel();
+    const customBudget = document.querySelector("#customBudget");
+    if (customBudget) {
+      customBudget.value = filterState.maxPrice >= 20000 ? "" : filterState.maxPrice;
+    }
+    renderPackages();
+  });
+
+  const customBudget = document.querySelector("#customBudget");
+  customBudget?.addEventListener("input", (event) => {
+    const val = Number(event.target.value);
+    filterState.maxPrice = val > 0 ? val : 20000;
+    if (priceRange) priceRange.value = Math.min(filterState.maxPrice, 20000);
+    updatePriceLabel();
     renderPackages();
   });
 
@@ -309,9 +330,13 @@ function setupPackageFilters() {
     ["locations", "durations", "seasons", "types", "experiences"].forEach((group) => filterState[group].clear());
     if (packageSearch) packageSearch.value = "";
     if (priceRange) priceRange.value = "20000";
+    const customBudget = document.querySelector("#customBudget");
+    if (customBudget) customBudget.value = "";
     document.querySelectorAll("[data-filter]").forEach((input) => {
       input.checked = false;
     });
+    selectedCategory = null;
+    window.history.replaceState({}, "", window.location.pathname);
     updatePriceLabel();
     renderPackages();
   });
@@ -339,7 +364,7 @@ function renderPackageDetail() {
 
   const params = new URLSearchParams(window.location.search);
   const requestedId = Number(params.get("id"));
-  const trek = enrichedTreks.find((item) => item.id === requestedId) || enrichedTreks[0];
+  const trek = enrichedTreks.find((item) => item.id === requestedId);
 
   if (!trek) {
     detailRoot.innerHTML = `
@@ -357,7 +382,7 @@ function renderPackageDetail() {
   if (meta) meta.setAttribute("content", trek.description);
 
   detailRoot.innerHTML = `
-    <section class="detail-hero">
+    <section class="detail-hero reveal">
       <img src="${trek.image}" alt="${escapeHtml(trek.name)}" />
       <div class="detail-hero-content">
         <p class="eyebrow">${escapeHtml(trek.location)}</p>
@@ -371,8 +396,8 @@ function renderPackageDetail() {
     </section>
 
     <section class="detail-shell">
-      <aside class="detail-summary">
-        <div class="detail-price">${trek.cost === "Contact Us" ? "Contact Us" : escapeHtml(trek.cost)}</div>
+      <aside class="detail-summary reveal-left">
+        <div class="detail-price">${trek.cost && String(trek.cost).trim() !== "" && String(trek.cost).toLowerCase() !== "contact us" ? escapeHtml(trek.cost) : "Contact for Price"}</div>
         <dl>
           <div><dt>Duration</dt><dd>${escapeHtml(trek.duration)}</dd></div>
           <div><dt>Season</dt><dd>${escapeHtml(trek.seasons.join(", "))}</dd></div>
@@ -381,13 +406,13 @@ function renderPackageDetail() {
         <a class="cta-button detail-book" target="_blank" rel="noopener noreferrer" href="${whatsappLink(`Hi! I want to book ${trek.name} (${trek.duration}) for ${trek.cost}.`)}">Book Now</a>
       </aside>
 
-      <div class="detail-content">
-        <section class="detail-card">
+      <div class="detail-content reveal-right">
+        <section class="detail-card reveal-zoom">
           <h2>Overview</h2>
           <p>${escapeHtml(trek.description)}</p>
         </section>
 
-        <section class="detail-card">
+        <section class="detail-card reveal-zoom">
           <h2>Itinerary</h2>
           <div class="detail-itinerary">
             ${trek.itinerary.map((item, index) => `
@@ -399,7 +424,7 @@ function renderPackageDetail() {
           </div>
         </section>
 
-        <section class="detail-card">
+        <section class="detail-card reveal-zoom">
           <h2>Included / Excluded</h2>
           <div class="modal-details-grid">
             <div>
@@ -614,6 +639,18 @@ function openTextModal(type) {
   body.classList.add("modal-open");
 }
 
+function openImageModal(src, alt) {
+  modalRoot.innerHTML = `
+    <div class="modal-overlay" data-close-modal style="display: flex; align-items: center; justify-content: center; padding: 2rem;">
+      <div style="position: relative; max-width: 100%; max-height: 100%;">
+        <button class="close-btn" type="button" data-close-modal aria-label="Close modal" style="position: absolute; top: -40px; right: 0; background: none; border: none; color: white; font-size: 2.5rem; cursor: pointer;">&times;</button>
+        <img src="${escapeHtml(src)}" alt="${escapeHtml(alt || 'Gallery Image')}" style="width: auto; height: auto; max-width: 100%; max-height: 85vh; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.5);" />
+      </div>
+    </div>
+  `;
+  body.classList.add("modal-open");
+}
+
 function closeModal() {
   modalRoot.innerHTML = "";
   body.classList.remove("modal-open");
@@ -649,6 +686,8 @@ function setupChat() {
   const toggle = document.querySelector(".chat-toggle-btn");
   const windowEl = document.querySelector(".chat-window");
   const chatBody = document.querySelector("#chatBody");
+
+  if (!toggle || !windowEl || !chatBody) return;
   let step = 0;
   const answers = {};
 
@@ -785,6 +824,27 @@ function setupChat() {
   });
 }
 
+function initReveal() {
+  const revealElements = document.querySelectorAll(
+    ".reveal, .reveal-left, .reveal-right, .reveal-zoom"
+  );
+
+  const observer = new IntersectionObserver(
+    (entries, observerInstance) => {
+      entries.forEach((entry) => {
+        if(entry.isIntersecting){
+          entry.target.classList.add("active");
+        }
+      });
+    },
+    {
+      threshold: 0.15
+    }
+  );
+
+  revealElements.forEach((el) => observer.observe(el));
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   renderFeaturedPackages();
   setupPackageFilters();
@@ -794,18 +854,98 @@ document.addEventListener("DOMContentLoaded", () => {
   setupTheme();
   setupChat();
 
-  document.querySelector(".header").classList.toggle("scrolled", window.scrollY > 10);
-  window.addEventListener("scroll", () => {
-    document.querySelector(".header").classList.toggle("scrolled", window.scrollY > 10);
+  if (typeof Swiper !== 'undefined') {
+    new Swiper(".gallerySwiper", {
+      slidesPerView: 4,
+      spaceBetween: 20,
+      pagination: {
+        el: ".gallerySwiper .swiper-pagination",
+        clickable: true,
+      },
+      navigation: {
+        nextEl: ".gallerySwiper .swiper-button-next",
+        prevEl: ".gallerySwiper .swiper-button-prev",
+      },
+      breakpoints: {
+        0: { slidesPerView: 1 },
+        768: { slidesPerView: 2 },
+        1024: { slidesPerView: 4 }
+      }
+    });
+
+    new Swiper(".reviewsSwiper", {
+      slidesPerView: 4,
+      spaceBetween: 20,
+      loop: true,
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true
+      },
+      pagination: {
+        el: ".reviewsSwiper .swiper-pagination",
+        clickable: true,
+      },
+      navigation: {
+        nextEl: ".reviewsSwiper .swiper-button-next",
+        prevEl: ".reviewsSwiper .swiper-button-prev",
+      },
+      breakpoints: {
+        0: { slidesPerView: 1 },
+        768: { slidesPerView: 2 },
+        1024: { slidesPerView: 4 }
+      }
+    });
+  }
+
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+  }
+
+  const dropdownBtns = document.querySelectorAll(".dropdown-btn");
+  dropdownBtns.forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const dropdown = btn.closest(".dropdown");
+      if (dropdown) {
+        document.querySelectorAll(".dropdown.active").forEach(el => {
+          if (el !== dropdown) el.classList.remove("active");
+        });
+        dropdown.classList.toggle("active");
+      }
+    });
   });
+
+  const header = document.querySelector(".header");
+  if (header) {
+    header.classList.toggle("scrolled", window.scrollY > 10);
+    window.addEventListener("scroll", () => {
+      header.classList.toggle("scrolled", window.scrollY > 10);
+    });
+  }
 
   document.addEventListener("click", (event) => {
     const modalButton = event.target.closest("[data-modal]");
     if (modalButton) openTextModal(modalButton.dataset.modal);
+
+    const imageButton = event.target.closest("[data-image-src]");
+    if (imageButton) {
+      event.preventDefault();
+      openImageModal(imageButton.dataset.imageSrc, imageButton.querySelector("img")?.alt);
+    }
+
+    document.querySelectorAll(".dropdown.active").forEach(el => {
+      el.classList.remove("active");
+    });
+
     if (event.target.matches("[data-close-modal]")) closeModal();
   });
 
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") closeModal();
   });
+
+  initReveal();
 });

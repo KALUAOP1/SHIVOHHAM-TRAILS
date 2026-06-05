@@ -1,95 +1,111 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Package Details | SHIVOHHAM TRAILS</title>
-  <meta name="description" content="View SHIVOHHAM TRAILS package details including itinerary, price, duration, difficulty, season, inclusions, exclusions, and booking options." />
-  <link rel="icon" type="image/jpeg" href="assets/main logo.jpeg" />
-  <link rel="stylesheet" href="index.css" />
-  <script src="package.js" defer></script>
-  <script src="index.js" defer></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-</head>
-<body>
-  <header class="header">
-    <a class="logo-container" href="index.html" aria-label="SHIVOHHAM TRAILS home">
-      <img class="logo-img" src="assets/main logo.jpeg" alt="SHIVOHHAM TRAILS" />
-      <span class="logo-text">SHIVOHHAM TRAILS</span>
-    </a>
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Package Details | SHIVOHHAM TRAILS</title>
+    <meta name="description" content="View SHIVOHHAM TRAILS package details including itinerary, price, duration, difficulty, season, inclusions, exclusions, and booking options." />
+    <link rel="icon" type="image/jpeg" href="assets/main logo.jpeg" />
+    <link rel="stylesheet" href="index.css" />
+    <script src="package.js" defer></script>
+    <script src="index.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <header class="header">
+      <a class="logo-container" href="index.html" aria-label="SHIVOHHAM TRAILS home">
+        <img class="logo-img" src="assets/main logo.jpeg" alt="SHIVOHHAM TRAILS" />
+        <span class="logo-text">SHIVOHHAM TRAILS</span>
+      </a>
 
-    <nav class="nav-links" aria-label="Primary navigation">
-      <a href="index.html">Home</a>
-      <a href="packages.html">Packages</a>
-      <a href="index.html#why">About</a>
-      <a href="index.html#categories">Categories</a>
-      <a href="index.html#gallery">Gallery</a>
-      <button class="nav-link" type="button" data-modal="privacy">Privacy</button>
-      <button class="nav-link" type="button" data-modal="contact">Contact</button>
-    </nav>
+      <button class="menu-toggle" id="menuToggle">
+        ☰
+      </button>
 
-    <div class="nav-actions">
-      <a class="nav-cta" href="packages.html">All Packages</a>
-    </div>
-  </header>
-
-  <main id="packageDetailRoot" class="detail-page page-top">
-    <section class="detail-loading">
-      <h1>Loading package details...</h1>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="footer-grid">
-      <div>
-        <div class="logo-text">SHIVOHHAM TRAILS</div>
-        <p>Premium Himalayan treks, yatras, and eco-adventure travel experiences crafted for modern clients.</p>
-      </div>
-      <div>
-        <h3>Quick Links</h3>
+      <nav class="nav-links" id="navLinks" aria-label="Primary navigation">
         <a href="index.html">Home</a>
-        <a href="packages.html">Packages</a>
+        <div class="dropdown">
+          <button class="dropdown-btn nav-link">Explore ▾</button>
+          <div class="dropdown-content">
+            <a href="packages.html">All Packages</a>
+            <a href="packages.html?category=snow">Snow Treks</a>
+            <a href="packages.html?category=meadow">Meadow Trails</a>
+            <a href="packages.html?category=yatra">Spiritual Yatras</a>
+            <a href="packages.html?category=road">Road Expeditions</a>
+          </div>
+        </div>
         <a href="index.html#why">About</a>
-        <a href="index.html#categories">Categories</a>
-        <a href="index.html#gallery">Gallery</a>
+        <button class="nav-link" type="button" data-modal="privacy">Privacy</button>
+        <button class="nav-link" type="button" data-modal="contact">Contact</button>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="nav-cta" href="packages.html">All Packages</a>
       </div>
-      <div>
-        <h3>Contact</h3>
-        <p>+91 78579 34298</p>
-        <p>info@shivohhamtrails.com</p>
-        <p>Mukherjee Nagar, Delhi 110009</p>
+    </header>
+
+    <main id="packageDetailRoot" class="detail-page page-top">
+      <section class="detail-loading">
+        <h1>Loading package details...</h1>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h2>SHIVOHHAM TRAILS</h2>
+          <p>Premium Himalayan treks, yatras, and eco-adventure travel experiences crafted for unforgettable journeys.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Instagram">Instagram</a>
+            <a href="#" aria-label="Facebook">Facebook</a>
+            <a href="#" aria-label="YouTube">YouTube</a>
+          </div>
+        </div>
+        <div>
+          <h3>Quick Links</h3>
+          <a href="index.html">Home</a>
+          <a href="packages.html">Packages</a>
+          <a href="index.html#why">About</a>
+        </div>
+        <div>
+          <h3>Contact</h3>
+          <p>📞 <a href="#">+91 78579 34298</a></p>
+          <p>✉️ <a href="#">info@shivohhamtrails.com</a></p>
+          <p>📍 Delhi, India</p>
+        </div>
+        <div>
+          <h3>Policies</h3>
+          <button type="button" data-modal="privacy">Privacy Policy</button>
+          <button type="button" data-modal="terms">Terms & Conditions</button>
+          <button type="button" data-modal="contact">Contact Us</button>
+        </div>
       </div>
-      <div>
-        <h3>Policies</h3>
-        <button type="button" data-modal="privacy">Privacy Policy</button>
-        <button type="button" data-modal="terms">Terms & Cancellation</button>
-        <button type="button" data-modal="contact">Contact Us</button>
+      <div class="footer-bottom">
+        <p>&copy; 2026 SHIVOHHAM TRAILS. All Rights Reserved.</p>
       </div>
+    </footer>
+
+    <div class="contact-widget">
+      <a class="widget-btn phone-btn" href="#" aria-label="Call Us" title="Call Us">
+        <svg width="25" height="25" viewBox="0 0 24 24" aria-hidden="true" fill="#007BFF"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+      </a>
+      <a class="widget-btn whatsapp-btn" href="#" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Us" title="WhatsApp Us">
+        <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true" fill="none"><path d="M12.006 2.004c-5.522 0-10.003 4.48-10.003 10.003 0 1.76.458 3.483 1.33 5.004L2 22.004l5.138-1.348a9.96 9.96 0 0 0 4.868 1.26h.004c5.522 0 10.003-4.481 10.003-10.004 0-5.521-4.481-10.003-10.003-10.003z" fill="#25D366"/><path d="M16.47 13.918c-.244-.122-1.448-.716-1.67-.798-.223-.082-.385-.123-.548.123-.162.245-.63.797-.771.961-.142.163-.284.184-.528.062a6.084 6.084 0 0 1-1.789-1.103 6.7 6.7 0 0 1-1.24-1.543c-.143-.245-.015-.378.107-.5.11-.11.244-.286.366-.429.122-.143.162-.245.244-.408.081-.164.04-.307-.02-.429-.062-.123-.549-1.325-.752-1.815-.198-.478-.399-.413-.548-.42-.142-.008-.305-.01-.468-.01a.896.896 0 0 0-.65.306c-.223.245-.853.837-.853 2.04 0 1.204.873 2.368.995 2.53.122.164 1.727 2.634 4.183 3.693 1.954.842 2.316.715 2.723.673.407-.04 1.32-.538 1.503-1.058.183-.52.183-.967.122-1.06-.06-.091-.223-.142-.468-.264z" fill="#FFF"/></svg>
+      </a>
     </div>
-    <p class="footer-bottom">&copy; 2026 SHIVOHHAM TRAILS Adventures. All rights reserved.</p>
-  </footer>
 
-  <div class="contact-widget">
-    <a class="widget-btn phone-btn" href="tel:+917857934298" aria-label="Call Us" title="Call Us">
-      <svg width="25" height="25" viewBox="0 0 24 24" aria-hidden="true" fill="#007BFF"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-    </a>
-    <a class="widget-btn whatsapp-btn" href="https://wa.me/917857934298" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Us" title="WhatsApp Us">
-      <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true" fill="none"><path d="M12.006 2.004c-5.522 0-10.003 4.48-10.003 10.003 0 1.76.458 3.483 1.33 5.004L2 22.004l5.138-1.348a9.96 9.96 0 0 0 4.868 1.26h.004c5.522 0 10.003-4.481 10.003-10.004 0-5.521-4.481-10.003-10.003-10.003z" fill="#25D366"/><path d="M16.47 13.918c-.244-.122-1.448-.716-1.67-.798-.223-.082-.385-.123-.548.123-.162.245-.63.797-.771.961-.142.163-.284.184-.528.062a6.084 6.084 0 0 1-1.789-1.103 6.7 6.7 0 0 1-1.24-1.543c-.143-.245-.015-.378.107-.5.11-.11.244-.286.366-.429.122-.143.162-.245.244-.408.081-.164.04-.307-.02-.429-.062-.123-.549-1.325-.752-1.815-.198-.478-.399-.413-.548-.42-.142-.008-.305-.01-.468-.01a.896.896 0 0 0-.65.306c-.223.245-.853.837-.853 2.04 0 1.204.873 2.368.995 2.53.122.164 1.727 2.634 4.183 3.693 1.954.842 2.316.715 2.723.673.407-.04 1.32-.538 1.503-1.058.183-.52.183-.967.122-1.06-.06-.091-.223-.142-.468-.264z" fill="#FFF"/></svg>
-    </a>
-  </div>
+    <button class="chat-toggle-btn" type="button" aria-label="Open chat assistant">
+      <svg class="chat-open-icon" width="25" height="25" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="chat-close-icon">x</span>
+      <span class="chat-label">Chat with us</span>
+    </button>
+    <div class="chat-window" hidden>
+      <div class="chat-header"><h3>Trek Guide Assistant</h3></div>
+      <div class="chat-body" id="chatBody"></div>
+    </div>
 
-  <button class="chat-toggle-btn" type="button" aria-label="Open chat assistant">
-    <svg class="chat-open-icon" width="25" height="25" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    <span class="chat-close-icon">x</span>
-    <span class="chat-label">Chat with us</span>
-  </button>
-  <div class="chat-window" hidden>
-    <div class="chat-header"><h3>Trek Guide Assistant</h3></div>
-    <div class="chat-body" id="chatBody"></div>
-  </div>
-
-  <div class="modal-root" id="modalRoot" aria-live="polite"></div>
-</body>
-</html>
+    <div class="modal-root" id="modalRoot" aria-live="polite"></div>
+  </body>
+  </html>

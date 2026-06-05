@@ -6,13 +6,15 @@
   <title>SHIVOHHAM TRAILS | Premium Himalayan Treks & Travel Packages</title>
   <meta name="description" content="Discover premium Himalayan treks, spiritual yatras, and curated mountain travel packages with expert guides and easy WhatsApp booking." />
   <link rel="icon" type="image/jpeg" href="assets/main logo.jpeg" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <link rel="stylesheet" href="index.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script src="package.js" defer></script>
   <script src="index.js" defer></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-</head>
+</head> 
 <body>
   <header class="header">
     <a class="logo-container" href="index.html" aria-label="SHIVOHHAM TRAILS home">
@@ -20,12 +22,23 @@
       <span class="logo-text">SHIVOHHAM TRAILS</span>
     </a>
 
-    <nav class="nav-links" aria-label="Primary navigation">
+    <button class="menu-toggle" id="menuToggle">
+      ☰
+    </button>
+
+    <nav class="nav-links" id="navLinks" aria-label="Primary navigation">
       <a href="index.html">Home</a>
-      <a href="packages.html">Packages</a>
+      <div class="dropdown">
+        <button class="dropdown-btn nav-link">Explore ▾</button>
+        <div class="dropdown-content">
+          <a href="packages.html">All Packages</a>
+          <a href="packages.html?category=snow">Snow Treks</a>
+          <a href="packages.html?category=meadow">Meadow Trails</a>
+          <a href="packages.html?category=yatra">Spiritual Yatras</a>
+          <a href="packages.html?category=road">Road Expeditions</a>
+        </div>
+      </div>
       <a href="#why">About</a>
-      <a href="#categories">Categories</a>
-      <a href="#gallery">Gallery</a>
       <button class="nav-link" type="button" data-modal="privacy">Privacy</button>
       <button class="nav-link" type="button" data-modal="contact">Contact</button>
     </nav>
@@ -36,7 +49,7 @@
   </header>
 
   <main>
-    <section class="hero" id="home">
+    <section class="hero reveal" id="home">
       <div class="hero-bg"></div>
       <div class="hero-pattern" aria-hidden="true"></div>
       <div class="hero-panel">
@@ -45,7 +58,7 @@
         <h1 class="animate-title">Plan your next <span>SHIVOHHAM TRAILS</span> escape</h1>
         <p class="animate-subtitle">Tell us your dates, budget, and preferred trail. We will help you choose the right Himalayan experience with safe logistics, expert guides, and premium mountain hospitality.</p>
         <div class="hero-actions">
-          <a class="hero-cta primary" target="_blank" rel="noopener noreferrer" href="https://wa.me/917857934298?text=Hi%20SHIVOHHAM%20TRAILS!%20I%20want%20to%20book%20a%20trek.">
+          <a class="hero-cta primary" href="#">
             <svg width="25" height="25" viewBox="0 0 24 24" aria-hidden="true" fill="none"><path d="M12.006 2.004c-5.522 0-10.003 4.48-10.003 10.003 0 1.76.458 3.483 1.33 5.004L2 22.004l5.138-1.348a9.96 9.96 0 0 0 4.868 1.26h.004c5.522 0 10.003-4.481 10.003-10.004 0-5.521-4.481-10.003-10.003-10.003z" fill="#25D366"/><path d="M16.47 13.918c-.244-.122-1.448-.716-1.67-.798-.223-.082-.385-.123-.548.123-.162.245-.63.797-.771.961-.142.163-.284.184-.528.062a6.084 6.084 0 0 1-1.789-1.103 6.7 6.7 0 0 1-1.24-1.543c-.143-.245-.015-.378.107-.5.11-.11.244-.286.366-.429.122-.143.162-.245.244-.408.081-.164.04-.307-.02-.429-.062-.123-.549-1.325-.752-1.815-.198-.478-.399-.413-.548-.42-.142-.008-.305-.01-.468-.01a.896.896 0 0 0-.65.306c-.223.245-.853.837-.853 2.04 0 1.204.873 2.368.995 2.53.122.164 1.727 2.634 4.183 3.693 1.954.842 2.316.715 2.723.673.407-.04 1.32-.538 1.503-1.058.183-.52.183-.967.122-1.06-.06-.091-.223-.142-.468-.264z" fill="#FFF"/></svg>
             Book on WhatsApp
           </a>
@@ -54,7 +67,7 @@
       </div>
     </section>
 
-    <section class="why-section" id="why">
+    <section class="why-section reveal-left" id="why">
       <div class="trek-container">
         <div class="section-heading">
           <p class="eyebrow">About</p>
@@ -71,22 +84,7 @@
       </div>
     </section>
 
-    <section class="categories-section" id="categories">
-      <div class="trek-container">
-        <div class="section-heading">
-          <p class="eyebrow">Categories</p>
-          <h2 class="section-title">Choose your mountain mood</h2>
-        </div>
-        <div class="category-grid">
-          <a class="category-card" href="packages.html"><img src="assets/packages/kedarkantha_trek.webp" alt="Snow trek" /><span>Snow Treks</span></a>
-          <a class="category-card" href="packages.html"><img src="assets/packages/dayara_bugyal.webp" alt="Meadow trail" /><span>Meadow Trails</span></a>
-          <a class="category-card" href="packages.html"><img src="assets/packages/char_dham_yatra.webp" alt="Spiritual yatra" /><span>Spiritual Yatras</span></a>
-          <a class="category-card" href="packages.html"><img src="assets/packages/winter_spiti.webp" alt="Road expedition" /><span>Road Expeditions</span></a>
-        </div>
-      </div>
-    </section>
-
-    <section class="trek-container" id="treks">
+    <section class="trek-container reveal" id="treks">
       <div class="section-heading">
         <p class="eyebrow">Featured Packages</p>
         <h2 class="section-title">Fresh, popular, and value-ready escapes</h2>
@@ -98,22 +96,58 @@
       </div>
     </section>
 
-    <section class="insta-feed-section" id="gallery">
+    <section class="insta-feed-section reveal-right" id="gallery">
       <div class="insta-inner">
         <div class="section-heading">
           <p class="eyebrow">Gallery</p>
           <h2 class="section-title">A glimpse of the trail</h2>
         </div>
-        <a class="insta-link" href="https://instagram.com/the_trek_hills" target="_blank" rel="noopener noreferrer" aria-label="Follow SHIVOHHAM TRAILS on Instagram">
-          <span>@the_trek_hills</span>
-        </a>
-        <div class="insta-grid">
-          <a href="https://instagram.com/the_trek_hills" target="_blank" rel="noopener noreferrer"><img src="assets/packages/kedarnath_temple_trek.webp" alt="Kedarnath trek" /><span class="insta-overlay"><span>View Journey</span></span></a>
-          <a href="https://instagram.com/the_trek_hills" target="_blank" rel="noopener noreferrer"><img src="assets/packages/winter_spiti.webp" alt="Winter Spiti" /><span class="insta-overlay"><span>View Journey</span></span></a>
-          <a href="https://instagram.com/the_trek_hills" target="_blank" rel="noopener noreferrer"><img src="assets/packages/kuari_pass.webp" alt="Kuari Pass" /><span class="insta-overlay"><span>View Journey</span></span></a>
-          <a href="https://instagram.com/the_trek_hills" target="_blank" rel="noopener noreferrer"><img src="assets/packages/bir_billing.webp" alt="Bir Billing" /><span class="insta-overlay"><span>View Journey</span></span></a>
-          <a href="https://instagram.com/the_trek_hills" target="_blank" rel="noopener noreferrer"><img src="assets/packages/dayara_bugyal.webp" alt="Dayara Bugyal" /><span class="insta-overlay"><span>View Journey</span></span></a>
-          <a href="https://instagram.com/the_trek_hills" target="_blank" rel="noopener noreferrer"><img src="assets/packages/char_dham_yatra.webp" alt="Char Dham Yatra" /><span class="insta-overlay"><span>View Journey</span></span></a>
+        <div class="swiper gallerySwiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide"><a class="image-card" href="javascript:void(0)" data-image-src="assets/reviews/travel1.jpeg"><img src="assets/reviews/travel1.jpeg" alt="Travel Photo 1" /><div class="image-overlay"><span>View Image</span></div></a></div>
+            <div class="swiper-slide"><a class="image-card" href="javascript:void(0)" data-image-src="assets/reviews/travel2.jpeg"><img src="assets/reviews/travel2.jpeg" alt="Travel Photo 2" /><div class="image-overlay"><span>View Image</span></div></a></div>
+            <div class="swiper-slide"><a class="image-card" href="javascript:void(0)" data-image-src="assets/reviews/travel3.jpeg"><img src="assets/reviews/travel3.jpeg" alt="Travel Photo 3" /><div class="image-overlay"><span>View Image</span></div></a></div>
+            <div class="swiper-slide"><a class="image-card" href="javascript:void(0)" data-image-src="assets/reviews/travel4.jpeg"><img src="assets/reviews/travel4.jpeg" alt="Travel Photo 4" /><div class="image-overlay"><span>View Image</span></div></a></div>
+            <div class="swiper-slide"><a class="image-card" href="javascript:void(0)" data-image-src="assets/reviews/travel5.jpeg"><img src="assets/reviews/travel5.jpeg" alt="Travel Photo 5" /><div class="image-overlay"><span>View Image</span></div></a></div>
+            <div class="swiper-slide"><a class="image-card" href="javascript:void(0)" data-image-src="assets/reviews/travel6.jpeg"><img src="assets/reviews/travel6.jpeg" alt="Travel Photo 6" /><div class="image-overlay"><span>View Image</span></div></a></div>
+            <div class="swiper-slide"><a class="image-card" href="javascript:void(0)" data-image-src="assets/reviews/travel7.jpeg"><img src="assets/reviews/travel7.jpeg" alt="Travel Photo 7" /><div class="image-overlay"><span>View Image</span></div></a></div>
+            <div class="swiper-slide"><a class="image-card" href="javascript:void(0)" data-image-src="assets/reviews/travel8.jpeg"><img src="assets/reviews/travel8.jpeg" alt="Travel Photo 8" /><div class="image-overlay"><span>View Image</span></div></a></div>
+            <div class="swiper-slide"><a class="image-card" href="javascript:void(0)" data-image-src="assets/reviews/travel9.jpeg"><img src="assets/reviews/travel9.jpeg" alt="Travel Photo 9" /><div class="image-overlay"><span>View Image</span></div></a></div>
+            <div class="swiper-slide"><a class="image-card" href="javascript:void(0)" data-image-src="assets/reviews/travel10.jpeg"><img src="assets/reviews/travel10.jpeg" alt="Travel Photo 10" /><div class="image-overlay"><span>View Image</span></div></a></div>
+            <div class="swiper-slide"><a class="image-card" href="javascript:void(0)" data-image-src="assets/reviews/travel11.jpeg"><img src="assets/reviews/travel11.jpeg" alt="Travel Photo 11" /><div class="image-overlay"><span>View Image</span></div></a></div>
+            <div class="swiper-slide"><a class="image-card" href="javascript:void(0)" data-image-src="assets/reviews/travel12.jpeg"><img src="assets/reviews/travel12.jpeg" alt="Travel Photo 12" /><div class="image-overlay"><span>View Image</span></div></a></div>
+            <div class="swiper-slide"><a class="image-card" href="javascript:void(0)" data-image-src="assets/reviews/travel13.jpeg"><img src="assets/reviews/travel13.jpeg" alt="Travel Photo 13" /><div class="image-overlay"><span>View Image</span></div></a></div>
+            <div class="swiper-slide"><a class="image-card" href="javascript:void(0)" data-image-src="assets/reviews/travel14.jpeg"><img src="assets/reviews/travel14.jpeg" alt="Travel Photo 14" /><div class="image-overlay"><span>View Image</span></div></a></div>
+            <div class="swiper-slide"><a class="image-card" href="javascript:void(0)" data-image-src="assets/reviews/travel15.jpeg"><img src="assets/reviews/travel15.jpeg" alt="Travel Photo 15" /><div class="image-overlay"><span>View Image</span></div></a></div>
+            <div class="swiper-slide"><a class="image-card" href="javascript:void(0)" data-image-src="assets/reviews/travel16.jpeg"><img src="assets/reviews/travel16.jpeg" alt="Travel Photo 16" /><div class="image-overlay"><span>View Image</span></div></a></div>
+          </div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="reviews-section reveal" id="reviews" style="padding: 4rem 5%; background: var(--bg-alt, #f9f9f9);">
+      <div class="trek-container">
+        <div class="section-heading">
+          <p class="eyebrow">Reviews</p>
+          <h2 class="section-title">What our travelers say</h2>
+        </div>
+        <div class="swiper reviewsSwiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide"><a class="image-card" href="javascript:void(0)" data-image-src="assets/reviews/r1.jpeg"><img src="assets/reviews/r1.jpeg" alt="Review 1" /><div class="image-overlay"><span>View Review</span></div></a></div>
+            <div class="swiper-slide"><a class="image-card" href="javascript:void(0)" data-image-src="assets/reviews/r2.jpeg"><img src="assets/reviews/r2.jpeg" alt="Review 2" /><div class="image-overlay"><span>View Review</span></div></a></div>
+            <div class="swiper-slide"><a class="image-card" href="javascript:void(0)" data-image-src="assets/reviews/r3.jpeg"><img src="assets/reviews/r3.jpeg" alt="Review 3" /><div class="image-overlay"><span>View Review</span></div></a></div>
+            <div class="swiper-slide"><a class="image-card" href="javascript:void(0)" data-image-src="assets/reviews/r4.jpeg"><img src="assets/reviews/r4.jpeg" alt="Review 4" /><div class="image-overlay"><span>View Review</span></div></a></div>
+            <div class="swiper-slide"><a class="image-card" href="javascript:void(0)" data-image-src="assets/reviews/r5.jpeg"><img src="assets/reviews/r5.jpeg" alt="Review 5" /><div class="image-overlay"><span>View Review</span></div></a></div>
+            <div class="swiper-slide"><a class="image-card" href="javascript:void(0)" data-image-src="assets/reviews/r6.jpeg"><img src="assets/reviews/r6.jpeg" alt="Review 6" /><div class="image-overlay"><span>View Review</span></div></a></div>
+            <div class="swiper-slide"><a class="image-card" href="javascript:void(0)" data-image-src="assets/reviews/r7.jpeg"><img src="assets/reviews/r7.jpeg" alt="Review 7" /><div class="image-overlay"><span>View Review</span></div></a></div>
+            <div class="swiper-slide"><a class="image-card" href="javascript:void(0)" data-image-src="assets/reviews/r8.jpeg"><img src="assets/reviews/r8.jpeg" alt="Review 8" /><div class="image-overlay"><span>View Review</span></div></a></div>
+          </div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-pagination"></div>
         </div>
       </div>
     </section>
@@ -121,39 +155,44 @@
 
   <footer class="footer">
     <div class="footer-grid">
-      <div>
-        <div class="logo-text">SHIVOHHAM TRAILS</div>
-        <p>Premium Himalayan treks, yatras, and eco-adventure travel experiences crafted for modern clients.</p>
+      <div class="footer-brand">
+        <h2>SHIVOHHAM TRAILS</h2>
+        <p>Premium Himalayan treks, yatras, and eco-adventure travel experiences crafted for unforgettable journeys.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram">Instagram</a>
+          <a href="#" aria-label="Facebook">Facebook</a>
+          <a href="#" aria-label="YouTube">YouTube</a>
+        </div>
       </div>
       <div>
         <h3>Quick Links</h3>
         <a href="index.html">Home</a>
         <a href="packages.html">Packages</a>
-        <a href="#why">About</a>
-        <a href="#categories">Categories</a>
-        <a href="#gallery">Gallery</a>
+        <a href="index.html#why">About</a>
       </div>
       <div>
         <h3>Contact</h3>
-        <p>+91 78579 34298</p>
-        <p>info@shivohhamtrails.com</p>
-        <p>Mukherjee Nagar, Delhi 110009</p>
+        <p>📞 <a href="#">+91 78579 34298</a></p>
+        <p>✉️ <a href="#">info@shivohhamtrails.com</a></p>
+        <p>📍 Delhi, India</p>
       </div>
       <div>
         <h3>Policies</h3>
         <button type="button" data-modal="privacy">Privacy Policy</button>
-        <button type="button" data-modal="terms">Terms & Cancellation</button>
+        <button type="button" data-modal="terms">Terms & Conditions</button>
         <button type="button" data-modal="contact">Contact Us</button>
       </div>
     </div>
-    <p class="footer-bottom">&copy; 2026 SHIVOHHAM TRAILS Adventures. All rights reserved.</p>
+    <div class="footer-bottom">
+      <p>&copy; 2026 SHIVOHHAM TRAILS. All Rights Reserved.</p>
+    </div>
   </footer>
 
   <div class="contact-widget">
-    <a class="widget-btn phone-btn" href="tel:+917857934298" aria-label="Call Us" title="Call Us">
+    <a class="widget-btn phone-btn" href="#" aria-label="Call Us" title="Call Us">
       <svg width="25" height="25" viewBox="0 0 24 24" aria-hidden="true" fill="#007BFF"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
     </a>
-    <a class="widget-btn whatsapp-btn" href="https://wa.me/917857934298" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Us" title="WhatsApp Us">
+    <a class="widget-btn whatsapp-btn" href="#" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Us" title="WhatsApp Us">
       <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true" fill="none"><path d="M12.006 2.004c-5.522 0-10.003 4.48-10.003 10.003 0 1.76.458 3.483 1.33 5.004L2 22.004l5.138-1.348a9.96 9.96 0 0 0 4.868 1.26h.004c5.522 0 10.003-4.481 10.003-10.004 0-5.521-4.481-10.003-10.003-10.003z" fill="#25D366"/><path d="M16.47 13.918c-.244-.122-1.448-.716-1.67-.798-.223-.082-.385-.123-.548.123-.162.245-.63.797-.771.961-.142.163-.284.184-.528.062a6.084 6.084 0 0 1-1.789-1.103 6.7 6.7 0 0 1-1.24-1.543c-.143-.245-.015-.378.107-.5.11-.11.244-.286.366-.429.122-.143.162-.245.244-.408.081-.164.04-.307-.02-.429-.062-.123-.549-1.325-.752-1.815-.198-.478-.399-.413-.548-.42-.142-.008-.305-.01-.468-.01a.896.896 0 0 0-.65.306c-.223.245-.853.837-.853 2.04 0 1.204.873 2.368.995 2.53.122.164 1.727 2.634 4.183 3.693 1.954.842 2.316.715 2.723.673.407-.04 1.32-.538 1.503-1.058.183-.52.183-.967.122-1.06-.06-.091-.223-.142-.468-.264z" fill="#FFF"/></svg>
     </a>
   </div>
