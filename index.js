@@ -166,7 +166,7 @@ function escapeHtml(value) {
 
 function packageCard(trek, compact = false) {
   return `
-    <a class="trek-card package-card ${compact ? "featured-card" : ""}" href="../package-detail/index.html?id=${trek.id}" aria-label="Open ${escapeHtml(trek.name)} details">
+    <a class="trek-card package-card ${compact ? "featured-card" : ""}" href="../package-detail/?id=${trek.id}" aria-label="Open ${escapeHtml(trek.name)} details">
       <div class="package-media">
       <img class="trek-image" src="${trek.image}" alt="${escapeHtml(trek.name)}" />
         <div class="package-badges">
@@ -371,7 +371,7 @@ function renderPackageDetail() {
       <section class="detail-loading">
         <h1>Package not found</h1>
         <p>Please return to the packages page and choose another trip.</p>
-        <a class="hero-cta primary" href="../packages/index.html">View Packages</a>
+        <a class="hero-cta primary" href="../packages/">View Packages</a>
       </section>
     `;
     return;
@@ -390,7 +390,7 @@ function renderPackageDetail() {
         <p>${escapeHtml(trek.description)}</p>
         <div class="detail-hero-actions">
           <a class="hero-cta primary" target="_blank" rel="noopener noreferrer" href="${whatsappLink(`Hi! I want to book ${trek.name}. Please share more details.`)}">Book Now</a>
-          <a class="hero-cta ghost" href="../packages/index.html">Back to Packages</a>
+          <a class="hero-cta ghost" href="../packages/">Back to Packages</a>
         </div>
       </div>
     </section>
@@ -751,7 +751,7 @@ function setupChat() {
     chatBody.insertAdjacentHTML("beforeend", `
       <div class="chat-results">
         ${(recommendations.length ? recommendations : treks.slice(0, 4)).map((trek) => `
-          <a class="chat-trek-card" href="../package-detail/index.html?id=${trek.id}">
+          <a class="chat-trek-card" href="../package-detail/?id=${trek.id}">
             <img src="${trek.image}" alt="${escapeHtml(trek.name)}" />
             <span>
               <h4>${escapeHtml(trek.name)}</h4>
