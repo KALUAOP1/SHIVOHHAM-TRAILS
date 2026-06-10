@@ -7,19 +7,19 @@ const profiles = [
   {
     name: "Rupesh Raj",
     title: "Director & Founder",
-    image: "assets/profilepic/rupesh.webp",
+    image: "../assets/profilepic/rupesh.webp",
     bio: "A mountaineering enthusiast with a passion for uncovering the sacred secrets of the Himalayas. Rupesh founded SHIVOHHAM TRAILS to bring spiritual and adventurous souls closer to the peaks."
   },
   {
     name: "Arav Michael",
     title: "Team Head Operations",
-    image: "assets/profilepic/arav.webp",
+    image: "../assets/profilepic/arav.webp",
     bio: "The backbone of SHIVOHHAM TRAILS' logistical excellence. Arav ensures that every pilgrimage and trek is executed with precision, safety, and utmost care for our trekkers."
   },
   {
     name: "Trishna Rajkonwar",
     title: "Head of Expeditions",
-    image: "assets/profilepic/about_us_trishna_new.webp",
+    image: "../assets/profilepic/about_us_trishna_new.webp",
     bio: "An aerospace engineering graduate from Assam, professional mountaineer and accomplished alpinist. She brings discipline, resilience, and leadership from her tenure as an NCC cadet and national-level sportsperson. Committed to the highest standards of safety in high-altitude environments."
   }
 ];
@@ -166,7 +166,7 @@ function escapeHtml(value) {
 
 function packageCard(trek, compact = false) {
   return `
-    <a class="trek-card package-card ${compact ? "featured-card" : ""}" href="package-detail.html?id=${trek.id}" aria-label="Open ${escapeHtml(trek.name)} details">
+    <a class="trek-card package-card ${compact ? "featured-card" : ""}" href="../package-detail/index.html?id=${trek.id}" aria-label="Open ${escapeHtml(trek.name)} details">
       <div class="package-media">
       <img class="trek-image" src="${trek.image}" alt="${escapeHtml(trek.name)}" />
         <div class="package-badges">
@@ -371,7 +371,7 @@ function renderPackageDetail() {
       <section class="detail-loading">
         <h1>Package not found</h1>
         <p>Please return to the packages page and choose another trip.</p>
-        <a class="hero-cta primary" href="packages.html">View Packages</a>
+        <a class="hero-cta primary" href="../packages/index.html">View Packages</a>
       </section>
     `;
     return;
@@ -390,7 +390,7 @@ function renderPackageDetail() {
         <p>${escapeHtml(trek.description)}</p>
         <div class="detail-hero-actions">
           <a class="hero-cta primary" target="_blank" rel="noopener noreferrer" href="${whatsappLink(`Hi! I want to book ${trek.name}. Please share more details.`)}">Book Now</a>
-          <a class="hero-cta ghost" href="packages.html">Back to Packages</a>
+          <a class="hero-cta ghost" href="../packages/index.html">Back to Packages</a>
         </div>
       </div>
     </section>
@@ -751,7 +751,7 @@ function setupChat() {
     chatBody.insertAdjacentHTML("beforeend", `
       <div class="chat-results">
         ${(recommendations.length ? recommendations : treks.slice(0, 4)).map((trek) => `
-          <a class="chat-trek-card" href="package-detail.html?id=${trek.id}">
+          <a class="chat-trek-card" href="../package-detail/index.html?id=${trek.id}">
             <img src="${trek.image}" alt="${escapeHtml(trek.name)}" />
             <span>
               <h4>${escapeHtml(trek.name)}</h4>
