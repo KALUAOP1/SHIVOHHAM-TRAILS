@@ -1,4 +1,4 @@
-const phoneNumber = "917857934298";
+const phoneNumber = "917056135653";
 
 const treks = window.TREK_PACKAGES || [];
 const enrichedTreks = treks.map(enrichTrek);
@@ -597,7 +597,7 @@ function openTextModal(type) {
       <h3>4. Third-Party Services</h3>
       <p>We do not sell, trade, or otherwise transfer your personally identifiable information to outside parties. This does not include trusted third parties who assist us in operating our website or conducting our business (such as WhatsApp for communication), so long as those parties agree to keep this information confidential.</p>
       <h3>5. Contact Us</h3>
-      <p>If you have any questions or concerns about this Privacy Policy, please contact us at privacy@shivohhamtrails.com or via WhatsApp at +91 78579 34298.</p>
+      <p>If you have any questions or concerns about this Privacy Policy, please contact us at privacy@shivohhamtrails.com or via WhatsApp at +91 70561 35653.</p>
     `,
     terms: `
       <h2>Terms & Conditions</h2>
@@ -621,8 +621,8 @@ function openTextModal(type) {
         Chat with Us
       </a>
       <div class="contact-details">
-        <p><strong>Address:</strong> Parmanand Trek Hills, Mukherjee Nagar, PIN code 110009, F block 33</p>
-        <p><strong>Phone:</strong> +91 78579 34298</p>
+        <p><strong>Address:</strong> ------</p>
+        <p><strong>Phone:</strong> <a href="tel:+917056135653" style="color: inherit; text-decoration: none;">+91 70561 35653</a></p>
         <p><strong>Email:</strong> info@shivohhamtrails.com</p>
       </div>
     `
